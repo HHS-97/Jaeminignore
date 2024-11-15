@@ -11,7 +11,7 @@ export const useVideoStore = defineStore('video', () => {
 
   // 데이터 다운로드
   const getVideos = (query) => {
-    console.log(API_KEY);
+    // console.log(API_KEY);
     // axios는 Promise 객체와 동일하게 활용한다.
     axios({
       method: 'get',
@@ -44,8 +44,6 @@ export const useVideoStore = defineStore('video', () => {
           return false
         }
       })
-      console.log(video.value)
-    }
 
     // 나중에 볼 동영상에 추가하기
     const addToVideo = (video) => {

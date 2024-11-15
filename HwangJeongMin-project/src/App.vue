@@ -1,13 +1,10 @@
 <template>
-    <h1>
-        <RouterView />
-    </h1>
+    <HomeView />
 </template>
 
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
-import { useVideoStore } from '@/stores/video.js'
-import { onMounted } from 'vue';
+
+import HomeView from './views/HomeView.vue';
 
 </script>
 
