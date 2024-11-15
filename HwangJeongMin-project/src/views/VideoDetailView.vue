@@ -20,17 +20,15 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { useVideoStore } from '@/stores/video';
-import { onMounted } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 
 
 const store = useVideoStore()
 const route = useRoute()
-const videoId = route.params.video_id
-
-const video = store.video.snippet
-
+const videoId = ref(route.params.video_id)
+console.log(route.params.video_id)
 store.getVideoDetail(videoId)
-
+const video = store.video.snippet
 
 </script>
 

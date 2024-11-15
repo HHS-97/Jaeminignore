@@ -1,7 +1,6 @@
 <template>
     <div>
         <Search />
-        
     </div>
 </template>
 
@@ -12,9 +11,6 @@ import Search from '@/components/Search.vue';
 
 const store = useVideoStore()
 
-onMounted(() => {
-    return store.getVideos('son')
-})
 </script>
 
 <style scoped>

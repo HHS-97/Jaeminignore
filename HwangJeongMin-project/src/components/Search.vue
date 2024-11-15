@@ -14,11 +14,13 @@
     <div v-if="videos" class="search-results">
       <h2>검색 결과</h2>
       <div class="video-list">
-        <div v-for="video in videos" :key="video.id.videoId" class="video-item" @click="goDetail(video.id.videoId)">
-          <img :src="video.snippet.thumbnails.default.url" alt="video thumbnail" />
-          <div class="video-info">
-            <h3>{{ video.snippet.title }}</h3>
-            <p>{{ video.snippet.description }}</p>
+        <div v-for="video in videos" :key="video.id.videoId" class="video-item" >
+          <div @click="goDetail(video.id.videoId)">
+            <img :src="video.snippet.thumbnails.default.url" alt="video thumbnail" />
+            <div class="video-info">
+              <h3>{{ video.snippet.title }}</h3>
+              <p>{{ video.snippet.description }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -33,8 +35,11 @@ import { useRouter } from 'vue-router';
 
 const query = ref('');
 const store = useVideoStore()
-const videos = store.videos.items
-const searching = () => store.getVideos(query.value)
+const videos = ref(null)
+const searching = () => {
+  store.getVideos(query.value)
+  videos.value = store.videos
+}
 const router = useRouter()
 
 const goDetail = function (videoId) {

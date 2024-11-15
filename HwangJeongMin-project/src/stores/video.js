@@ -17,6 +17,7 @@ export const useVideoStore = defineStore('video', () => {
       method: 'get',
       url: 'https://www.googleapis.com/youtube/v3/search',
       params: {
+        type: 'video',
         key: API_KEY,
         q : query,
         part: 'snippet',
@@ -26,6 +27,7 @@ export const useVideoStore = defineStore('video', () => {
     .then((res) => {
       console.log("response = ", res);
       videos.value = res.data.items
+      console.log(videos.value)
     })
     .catch((err) => {
       console.error("error = ", err);
@@ -34,9 +36,9 @@ export const useVideoStore = defineStore('video', () => {
 
     // 동영상 상세조회
     const getVideoDetail = (video_id) => {
-      console.log(videos.value)
       video.value = videos.value.find((idx) => {
-        if (idx.id.videoId == video_id) {
+        console.log(idx.id.videoId)
+        if (idx.id.videoId === video_id.value) {
           console.log('완료')
           return true
         }else {
@@ -44,6 +46,7 @@ export const useVideoStore = defineStore('video', () => {
           return false
         }
       })
+    }
 
     // 나중에 볼 동영상에 추가하기
     const addToVideo = (video) => {
