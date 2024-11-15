@@ -4,13 +4,14 @@ import axios from 'axios'
 
 export const useVideoStore = defineStore('video', () => {
   let videos = ref([])
+  let video =ref([])
   let favorite = ref([])
   let channels = ref([])
   const API_KEY = import.meta.env.VITE_SOME_API_KEY
 
   // 데이터 다운로드
   const getVideos = (query) => {
-    console.log(API_KEY);
+    // console.log(API_KEY);
     // axios는 Promise 객체와 동일하게 활용한다.
     axios({
       method: 'get',
@@ -19,7 +20,7 @@ export const useVideoStore = defineStore('video', () => {
         key: API_KEY,
         q : query,
         part: 'snippet',
-        fields: "items(id, snippet(title))",
+        // fields: "items(id, snippet(title))",
       }
     })
     .then((res) => {
@@ -46,7 +47,7 @@ export const useVideoStore = defineStore('video', () => {
       })
       .then((res) => {
         console.log("response = ", res);
-        videos.value = res.data
+        video.value = res.data
       })
       .catch((err) => {
         console.error("error = ", err);
@@ -54,5 +55,5 @@ export const useVideoStore = defineStore('video', () => {
     }
 
 
-  return { videos, favorite, channels, getVideos, getVideoDetail }
+  return { videos, video, favorite, channels, getVideos, getVideoDetail }
 }, { persist: true })

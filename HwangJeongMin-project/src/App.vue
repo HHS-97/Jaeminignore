@@ -1,20 +1,12 @@
 <template>
-    <h1>
-        1
-    </h1>
+    <HomeView />
 </template>
 
 <script setup>
-import Navigations from './components/Navigations.vue';
-import { RouterLink, RouterView } from 'vue-router';
-import { useVideoStore } from '@/stores/video.js'
-import { onMounted } from 'vue';
 
-const store = useVideoStore()
+import HomeView from './views/HomeView.vue';
 
-onMounted(() => {
-    return store.getVideos()
-})
+
 </script>
 
 <style scoped>
