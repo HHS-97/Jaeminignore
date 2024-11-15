@@ -1,7 +1,7 @@
 <template>
   <h1>나중에 볼 동영상</h1>
   <div v-if="store.videos.length > 0">
-    <div v-for="video in videos" :key="video.id">
+    <div v-for="video in store.videos" :key="video.id">
       <button @click="goDetail(video)" class="btn btn-warning">상세보기</button>
       <button @click="deleteToVideo(video)" class="btn btn-danger">삭제</button>
     </div>    
@@ -21,7 +21,7 @@ const goDetail = (video) => {
 }
 
 const deleteToVideo = (video) => {
-  // 함수 넣기
+  store.deleteToVideo(video.id)
 }
 
 </script>
